@@ -125,7 +125,9 @@ function shortURL(longUrl, shortUrl) {
     const copyButtons = document.querySelectorAll('.copy-to-clipboard');
     copyButtons.forEach((copyButton) => {
         copyButton.addEventListener('click', () => {
-            navigator.clipboard.writeText(shortUrl);
+            shortUrl.select();
+            shortUrl.setSelectionRange(0, 99999);
+            navigator.clipboard.writeText(shortUrl) || document.execCommand('copy');;
             copyButton.classList.add('copied');
             copyButton.innerHTML = 'Copied!';
             setTimeout(() => {
